@@ -61,4 +61,16 @@ i18n
     },
   })
 
+const htmlLangOf = (lng: string) =>
+  lng === 'zhCN' ? 'zh-CN' : lng === 'zhTW' ? 'zh-TW' : lng
+
+const syncHtmlLang = (lng: string) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = htmlLangOf(lng)
+  }
+}
+
+syncHtmlLang(i18n.language)
+i18n.on('languageChanged', syncHtmlLang)
+
 export default i18n
