@@ -30,7 +30,7 @@ import {
 const FAQ_ITEMS = [
   {
     q: 'Do I have to rewrite my code?',
-    a: 'No. SuperAI follows the OpenAI API, so the official SDKs work as they are. Set base_url to https://superai.day/v1 and keep your existing request code.',
+    a: 'No. SuperAI serves both protocols: the native Anthropic /v1/messages and the OpenAI compatible /v1/chat/completions, so the official SDK from either vendor works as it is. Point base_url at https://superai.day and keep your existing request code.',
   },
   {
     q: 'How is billing calculated?',

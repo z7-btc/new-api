@@ -31,7 +31,7 @@ interface HeroProps {
 }
 
 const PROOF_POINTS = [
-  'Works with the official OpenAI SDK',
+  'Works with the official OpenAI and Anthropic SDKs',
   'Keys scoped per project',
   'Usage and cost in real time',
 ]
@@ -102,7 +102,7 @@ export function Hero(props: HeroProps) {
 
           <p className='text-muted-foreground mt-6 max-w-[560px] text-base leading-relaxed sm:text-lg'>
             {t(
-              'Keep the OpenAI SDK you already use. Change base_url and reach every model you enable, with keys, usage and billing in one console.'
+              'Keep the OpenAI or Anthropic SDK you already use. Change base_url and reach every model you enable, with keys, usage and billing in one console.'
             )}
           </p>
 

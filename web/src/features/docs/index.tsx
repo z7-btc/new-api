@@ -87,7 +87,7 @@ const ZH: Copy = {
   faqs: [
     {
       q: '和直接用官方 API 有什么区别？',
-      a: '接口协议一致，区别在于计费与路由。你在一个账户里管理多个模型供应商，按实际用量付费，不用分别开户和充值。',
+      a: '接口协议一致：Claude 原生协议和 OpenAI 兼容协议都支持，区别在计费与路由。你在一个账户里管理多个模型供应商，按实际用量付费，不用分别开户和充值。',
     },
     {
       q: '支持流式输出吗？',
@@ -153,7 +153,7 @@ const EN: Copy = {
   faqs: [
     {
       q: 'How is this different from calling providers directly?',
-      a: 'The protocol is the same. The difference is billing and routing: one account, one balance, and usage based pricing across providers.',
+      a: 'The protocols are the same: the Claude native one and the OpenAI compatible one. The difference is billing and routing: one account, one balance, and usage based pricing across providers.',
     },
     {
       q: 'Does it support streaming?',

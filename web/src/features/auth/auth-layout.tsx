@@ -28,7 +28,7 @@ type AuthLayoutProps = {
 }
 
 const PROOF_POINTS = [
-  'Works with the official OpenAI SDK',
+  'Works with the official OpenAI and Anthropic SDKs',
   'Keys scoped per project',
   'Usage and cost in real time',
 ]
@@ -83,7 +83,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
           </h2>
           <p className='text-muted-foreground mt-4 text-sm leading-relaxed'>
             {t(
-              'Keep the OpenAI SDK you already use. Change base_url and reach every model you enable, with keys, usage and billing in one console.'
+              'Keep the OpenAI or Anthropic SDK you already use. Change base_url and reach every model you enable, with keys, usage and billing in one console.'
             )}
           </p>
           <ul className='mt-8 space-y-3'>
