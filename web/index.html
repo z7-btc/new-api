@@ -1,19 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google" content="notranslate" />
 
     <!-- Primary Meta Tags -->
-    <title>New API</title>
-    <meta name="title" content="New API" />
+    <title>SuperAI · 一个接口接入全球大模型</title>
+    <meta name="title" content="SuperAI · 一个接口接入全球大模型" />
     <meta
       name="description"
-      content="Unified AI API gateway and admin dashboard."
+      content="SuperAI 是面向开发者的大模型 API 网关：一个 OpenAI 兼容接口接入主流大模型，统一计费、用量可视化，按量付费。"
     />
+    <meta
+      name="keywords"
+      content="大模型 API,AI 网关,OpenAI 兼容,模型聚合,API 中转,按量计费"
+    />
+    <meta name="theme-color" content="#0B1020" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAFBFE" media="(prefers-color-scheme: light)" />
+    <link rel="canonical" href="https://superai.day/" />
 
-    <meta name="theme-color" content="#fff" />
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SuperAI" />
+    <meta property="og:url" content="https://superai.day/" />
+    <meta property="og:title" content="SuperAI · 一个接口接入全球大模型" />
+    <meta
+      property="og:description"
+      content="OpenAI 兼容接口，统一接入主流大模型。统一计费、用量透明，按量付费。"
+    />
+    <meta property="og:image" content="https://superai.day/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SuperAI · 一个接口接入全球大模型" />
+    <meta
+      name="twitter:description"
+      content="OpenAI 兼容接口，统一接入主流大模型。统一计费、用量透明，按量付费。"
+    />
+    <meta name="twitter:image" content="https://superai.day/og.png" />
+
     <!-- Resolve the theme before first paint so the page never flashes light
          and one-shot detectors (e.g. Dark Reader) see the real theme.
          Keep in sync with ThemeProvider and THEME_STORAGE_KEYS.mode. -->
@@ -21,13 +57,14 @@
       ;(function () {
         var theme = 'system'
         try {
-          theme = localStorage.getItem('newapi:theme:v1:mode') || 'system'
+          theme = localStorage.getItem('newapi:theme:v1:mode') || 'dark'
         } catch (e) {}
         if (theme !== 'dark' && theme !== 'light') {
           theme = window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light'
         }
+        document.documentElement.classList.remove('dark', 'light')
         document.documentElement.classList.add(theme)
       })()
     </script>

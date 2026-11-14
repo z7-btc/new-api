@@ -17,6 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { useQuery } from '@tanstack/react-query'
+import { Link } from '@tanstack/react-router'
 import { Construction } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
@@ -46,66 +47,28 @@ function EmptyAboutState() {
             )}
           </p>
         </div>
-        <div className='space-y-4 text-sm'>
-          <p>
-            {t('New API Project Repository:')}{' '}
-            <a
-              href='https://github.com/QuantumNous/new-api'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
-            >
-              {t('https://github.com/QuantumNous/new-api')}
-            </a>
-          </p>
+        <div className='space-y-3 text-sm'>
           <p className='text-muted-foreground'>
-            <a
-              href='https://github.com/QuantumNous/new-api'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
-            >
-              {t('NewAPI')}
-            </a>{' '}
-            © {currentYear}{' '}
-            <a
-              href='https://github.com/QuantumNous'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
-            >
-              {t('QuantumNous')}
-            </a>{' '}
-            {t('| Based on')}{' '}
-            <a
-              href='https://github.com/songquanpeng/one-api'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
-            >
-              {t('One API')}
-            </a>{' '}
-            © 2023{' '}
-            <a
-              href='https://github.com/songquanpeng'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
-            >
-              {t('JustSong')}
-            </a>
+            {t(
+              'SuperAI routes requests to the model providers you enable, with one OpenAI compatible endpoint and one bill.'
+            )}
           </p>
-          <p className='text-muted-foreground'>
-            {t('This project must be used in compliance with the')}{' '}
-            <a
-              href='https://github.com/QuantumNous/new-api/blob/main/LICENSE'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary hover:underline'
+          <div className='flex flex-wrap items-center justify-center gap-3 pt-2'>
+            <Link
+              to='/docs'
+              className='border-border/60 bg-card hover:border-primary/40 hover:text-primary inline-flex h-9 items-center rounded-xl border px-4 text-sm font-medium transition-colors'
             >
-              {t('AGPL v3.0 License')}
-            </a>
-            .
+              {t('Docs')}
+            </Link>
+            <Link
+              to='/pricing'
+              className='border-border/60 bg-card hover:border-primary/40 hover:text-primary inline-flex h-9 items-center rounded-xl border px-4 text-sm font-medium transition-colors'
+            >
+              {t('Model Square')}
+            </Link>
+          </div>
+          <p className='text-muted-foreground/50 pt-2 text-xs'>
+            &copy; {currentYear} SuperAI
           </p>
         </div>
       </div>
