@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const FEEDBACK_URL = 'https://github.com/QuantumNous/new-api/issues'
+const FEEDBACK_URL = '/docs#support'
 
 type GeneralErrorProps = React.HTMLAttributes<HTMLDivElement> & {
   minimal?: boolean
@@ -89,7 +89,7 @@ export function GeneralError({
         </p>
         {!minimal && (
           <p className='text-muted-foreground text-center text-sm'>
-            {t('If this keeps happening, please report it on GitHub Issues.')}
+            {t('If this keeps happening, please check the docs or contact support.')}
           </p>
         )}
         {!minimal && (
@@ -100,14 +100,10 @@ export function GeneralError({
             <Button
               variant='outline'
               render={
-                <a
-                  href={FEEDBACK_URL}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                />
+                <a href={FEEDBACK_URL} />
               }
             >
-              {t('Report an issue')}
+              {t('Get help')}
             </Button>
             <Button onClick={() => navigate({ to: '/' })}>
               {t('Back to Home')}

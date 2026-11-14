@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { Settings, Zap, BarChart3 } from 'lucide-react'
+import { KeyRound, LineChart, Terminal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 import { AnimateInView } from '@/components/animate-in-view'
@@ -27,58 +27,64 @@ export function HowItWorks() {
   const steps = [
     {
       num: '1',
-      title: t('Configure'),
+      title: t('Create an account and a key'),
       desc: t(
-        'Add your API keys, set up channels and configure access permissions'
+        'Sign up with an email, then generate an API key in the console. Keep one key per project so you can revoke it on its own.'
       ),
-      icon: <Settings className='size-6' strokeWidth={1.5} />,
+      icon: <KeyRound className='size-5' strokeWidth={1.6} />,
     },
     {
       num: '2',
-      title: t('Connect'),
+      title: t('Point your SDK at SuperAI'),
       desc: t(
-        'Connect through OpenAI, Claude, Gemini, and other compatible API routes'
+        'Change base_url to https://superai.day/v1 and pick a model name from the model square. The rest of your request stays the same.'
       ),
-      icon: <Zap className='size-6' strokeWidth={1.5} />,
+      icon: <Terminal className='size-5' strokeWidth={1.6} />,
     },
     {
       num: '3',
-      title: t('Monitor'),
-      desc: t('Track usage, costs and performance with real-time analytics'),
-      icon: <BarChart3 className='size-6' strokeWidth={1.5} />,
+      title: t('Ship and watch usage'),
+      desc: t(
+        'Every call is logged with tokens and cost. Balance, quota and rate limits are visible while you run, not a month later.'
+      ),
+      icon: <LineChart className='size-5' strokeWidth={1.6} />,
     },
   ]
 
   return (
-    <section className='border-border/40 relative z-10 border-t px-6 py-24 md:py-32'>
+    <section className='border-border/40 relative border-t px-5 py-20 sm:px-8 md:py-28'>
       <div className='mx-auto max-w-6xl'>
-        <AnimateInView className='mb-16 text-center md:mb-20'>
-          <p className='text-muted-foreground mb-3 text-xs font-medium tracking-widest uppercase'>
-            {t('How It Works')}
+        <AnimateInView className='mb-12 max-w-xl md:mb-16'>
+          <p className='text-muted-foreground/60 text-xs font-semibold tracking-[0.18em] uppercase'>
+            {t('How it works')}
           </p>
-          <h2 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            {t('Three steps to get started')}
+          <h2 className='mt-3 text-3xl leading-tight font-semibold tracking-tight md:text-4xl'>
+            {t('Three steps to your first request')}
           </h2>
         </AnimateInView>
 
-        <div className='grid gap-8 md:grid-cols-3 md:gap-12'>
-          {steps.map((step, i) => (
+        <div className='relative grid gap-6 md:grid-cols-3 md:gap-8'>
+          <div
+            aria-hidden
+            className='border-border/50 absolute top-6 right-12 left-12 hidden border-t border-dashed md:block'
+          />
+          {steps.map((step, index) => (
             <AnimateInView
               key={step.num}
-              delay={i * 150}
+              delay={index * 110}
               animation='fade-up'
-              className='relative flex flex-col items-center text-center'
+              className='relative'
             >
-              <div className='relative mb-6'>
-                <div className='text-muted-foreground border-border/50 bg-muted/30 flex size-16 items-center justify-center rounded-2xl border transition-colors'>
-                  {step.icon}
-                </div>
-                <div className='bg-foreground text-background absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full text-xs font-bold'>
-                  {step.num}
-                </div>
+              <div className='bg-background border-border/60 text-primary flex size-12 items-center justify-center rounded-2xl border'>
+                {step.icon}
               </div>
-              <h3 className='mb-2 text-base font-semibold'>{step.title}</h3>
-              <p className='text-muted-foreground max-w-[240px] text-sm leading-relaxed'>
+              <div className='mt-5 flex items-baseline gap-2'>
+                <span className='text-muted-foreground/40 font-mono text-xs tabular-nums'>
+                  0{step.num}
+                </span>
+                <h3 className='text-base font-semibold'>{step.title}</h3>
+              </div>
+              <p className='text-muted-foreground mt-2 max-w-sm text-sm leading-relaxed'>
                 {step.desc}
               </p>
             </AnimateInView>

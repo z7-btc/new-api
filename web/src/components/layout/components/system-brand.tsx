@@ -30,6 +30,7 @@ import { cn } from '@/lib/utils'
 
 type SystemBrandProps = {
   defaultName?: string
+  /** Kept for call-site compatibility; the version is no longer displayed. */
   defaultVersion?: string
   /**
    * Visual layout:
@@ -51,9 +52,7 @@ export function SystemBrand(props: SystemBrandProps) {
   const { logo } = useSystemConfig()
 
   const variant = props.variant ?? 'sidebar'
-  const name = status?.system_name || props.defaultName || 'New API'
-  const version =
-    status?.version || props.defaultVersion || t('Unknown version')
+  const name = status?.system_name || props.defaultName || 'SuperAI'
 
   if (variant === 'inline') {
     return (
@@ -85,16 +84,20 @@ export function SystemBrand(props: SystemBrandProps) {
           className='hover:text-sidebar-foreground active:text-sidebar-foreground cursor-default hover:bg-transparent active:bg-transparent'
           render={<div />}
         >
-          <div className='flex aspect-square size-8 items-center justify-center overflow-hidden rounded-lg'>
+          <div className='bg-brand-teal-soft relative flex aspect-square size-9 items-center justify-center overflow-hidden rounded-xl ring-1 ring-white/10'>
             <img
               src={logo}
               alt={t('Logo')}
-              className='size-full rounded-lg object-cover'
+              className='size-full rounded-xl object-cover'
             />
           </div>
           <div className='grid flex-1 text-start text-sm leading-tight group-data-[collapsible=icon]:hidden'>
-            <span className='truncate font-semibold'>{name}</span>
-            <span className='truncate text-xs'>{version}</span>
+            <span className='truncate text-[15px] font-semibold tracking-tight'>
+              {name}
+            </span>
+            <span className='text-muted-foreground/70 truncate text-[11px] font-medium tracking-[0.14em] uppercase'>
+              API Gateway
+            </span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>

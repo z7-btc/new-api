@@ -508,7 +508,11 @@ export const REQUEST_PLUGIN_DRY_RUN_FORMATS = [
     label: 'OpenAI Responses',
     model: 'gpt-4.1-mini',
   },
-  { value: 'claude', label: 'Claude Messages', model: 'claude-sonnet-4-5' },
+  {
+    value: 'claude',
+    label: 'Claude Messages',
+    model: 'claude-sonnet-4-5-20250929',
+  },
   { value: 'gemini', label: 'Gemini', model: 'gemini-2.5-flash' },
 ] as const
 

@@ -745,3 +745,69 @@ For commercial licensing, please contact support@quantumnous.com
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * SuperAI brand layer
+ * Thin rules, ink-blue depth, and a teal to violet signal used sparingly.
+ * ------------------------------------------------------------------------- */
+@layer components {
+  .brand-gradient-text {
+    background-image: var(--brand-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .brand-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklch, var(--brand-teal) 45%, transparent),
+      color-mix(in oklch, var(--brand-violet) 45%, transparent),
+      transparent
+    );
+  }
+
+  .brand-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 46% 38% at 18% 8%,
+        color-mix(in oklch, var(--brand-teal) 16%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 38% 34% at 82% 4%,
+        color-mix(in oklch, var(--brand-violet) 14%, transparent),
+        transparent 70%
+      );
+  }
+
+  /* Sidebar: the active row reads as a lit edge, not a filled block. */
+  [data-slot='sidebar-menu-button'][data-active],
+  [data-slot='sidebar-menu-sub-button'][data-active] {
+    box-shadow: inset 2px 0 0 var(--brand-teal);
+  }
+
+  [data-slot='sidebar-inner'] {
+    border-inline-end: 1px solid var(--sidebar-border);
+  }
+}
+
+@layer base {
+  ::selection {
+    background: color-mix(in oklch, var(--brand-teal) 32%, transparent);
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}

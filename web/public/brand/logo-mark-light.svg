@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <defs>
+    <linearGradient id="sai-light" x1="7" y1="9" x2="25" y2="23" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B9C87"/>
+      <stop offset="1" stop-color="#6743D9"/>
+    </linearGradient>
+  </defs>
+  <path d="M25 9H12a3.5 3.5 0 0 0 0 7h7a3.5 3.5 0 0 1 0 7H7" stroke="url(#sai-light)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

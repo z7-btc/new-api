@@ -381,8 +381,8 @@ export function ApiKeysMutateDrawer({
           </SheetTitle>
           <SheetDescription>
             {isUpdate
-              ? t('Update the API key by providing necessary info.')
-              : t('Add a new API key by providing necessary info.')}
+              ? t('Update the API key by providing the required details.')
+              : t('Add an API key by providing the required details.')}
           </SheetDescription>
         </SheetHeader>
         <Form {...form}>

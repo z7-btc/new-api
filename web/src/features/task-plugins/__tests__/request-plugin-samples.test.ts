@@ -126,7 +126,7 @@ describe('the sample image placeholder', () => {
 test('the sample card shows the written texts of a request and leaves out images and settings', () => {
   expect(
     requestPluginSampleTexts({
-      model: 'claude-sonnet-4-5',
+      model: 'claude-sonnet-4-5-20250929',
       system: 'Be brief.',
       messages: [
         {

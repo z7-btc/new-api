@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <linearGradient id="sai-badge" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FF0D2"/>
+      <stop offset="1" stop-color="#A98BFF"/>
+    </linearGradient>
+    <linearGradient id="sai-badge-bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121A2E"/>
+      <stop offset="1" stop-color="#0A0E1A"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#sai-badge-bg)"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5"/>
+  <path d="M50 18H24a7 7 0 0 0 0 14h14a7 7 0 0 1 0 14H14" stroke="url(#sai-badge)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { Link } from '@tanstack/react-router'
-import { Fragment, useMemo } from 'react'
+import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useStatus } from '@/hooks/use-status'
@@ -42,16 +42,12 @@ interface FooterProps {
   className?: string
 }
 
-const NEW_API_FOOTER_ATTRIBUTION_KEY = [
-  'footer',
-  'new' + 'api',
-  'projectAttributionSuffix',
-].join('.')
-
 function FooterLinkItem(props: { link: FooterLink }) {
   const { t } = useTranslation()
   const isExternal = props.link.href.startsWith('http')
   const label = t(props.link.text)
+  const className =
+    'text-muted-foreground hover:text-foreground text-sm transition-colors duration-200'
 
   if (isExternal) {
     return (
@@ -59,7 +55,7 @@ function FooterLinkItem(props: { link: FooterLink }) {
         href={props.link.href}
         target='_blank'
         rel='noopener noreferrer'
-        className='text-muted-foreground hover:text-foreground text-sm transition-colors duration-200'
+        className={className}
       >
         {label}
       </a>
@@ -67,10 +63,7 @@ function FooterLinkItem(props: { link: FooterLink }) {
   }
 
   return (
-    <Link
-      to={props.link.href}
-      className='text-muted-foreground hover:text-foreground text-sm transition-colors duration-200'
-    >
+    <Link to={props.link.href} className={className}>
       {label}
     </Link>
   )
@@ -121,106 +114,41 @@ function LegalLinks(props: { leadingSeparator?: boolean }) {
   )
 }
 
-// inline=true returns just the inner span for composition in a parent flex
-// row. inline=false wraps in a centered/right-aligned div (default).
-function ProjectAttribution(props: { currentYear: number; inline?: boolean }) {
-  const { t } = useTranslation()
-  const content = (
-    <span className='text-muted-foreground/45'>
-      &copy; {props.currentYear}{' '}
-      <a
-        href='https://github.com/QuantumNous/new-api'
-        target='_blank'
-        rel='noopener noreferrer'
-        className='text-foreground/70 hover:text-foreground font-medium transition-colors'
-      >
-        {t('New API')}
-      </a>
-      . {t(NEW_API_FOOTER_ATTRIBUTION_KEY)}
-    </span>
-  )
-  if (props.inline) {
-    return content
-  }
-  return (
-    <div className='text-muted-foreground/45 text-center text-xs sm:text-right'>
-      {content}
-    </div>
-  )
-}
+const FALLBACK_COLUMNS: FooterColumnProps[] = [
+  {
+    title: 'Product',
+    links: [
+      { text: 'Model Square', href: '/pricing' },
+      { text: 'Console', href: '/dashboard' },
+      { text: 'About', href: '/about' },
+    ],
+  },
+  {
+    title: 'Developers',
+    links: [
+      { text: 'Docs', href: '/docs' },
+      { text: 'Quick Start', href: '/docs#quickstart' },
+      { text: 'API Docs', href: '/docs#api' },
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      { text: 'FAQ', href: '/docs#faq' },
+      { text: 'Pricing', href: '/pricing' },
+      { text: 'Documentation', href: '/docs' },
+    ],
+  },
+]
 
 export function Footer(props: FooterProps) {
   const { t } = useTranslation()
-  const {
-    systemName,
-    logo: systemLogo,
-    footerHtml,
-    demoSiteEnabled,
-  } = useSystemConfig()
+  const { systemName, logo: systemLogo, footerHtml } = useSystemConfig()
 
-  const displayLogo = systemLogo || props.logo || '/logo.png'
-  const displayName = systemName || props.name || 'New API'
-  const isDemoSiteMode = Boolean(demoSiteEnabled)
+  const displayLogo = systemLogo || props.logo || '/logo.svg'
+  const displayName = systemName || props.name || 'SuperAI'
   const currentYear = new Date().getFullYear()
-
-  const fallbackColumns = useMemo<FooterColumnProps[]>(
-    () => [
-      {
-        title: t('footer.columns.about.title'),
-        links: [
-          {
-            text: t('footer.columns.about.links.aboutProject'),
-            href: 'https://docs.newapi.pro/wiki/project-introduction/',
-          },
-          {
-            text: t('footer.columns.about.links.contact'),
-            href: 'https://docs.newapi.pro/support/community-interaction/',
-          },
-          {
-            text: t('footer.columns.about.links.features'),
-            href: 'https://docs.newapi.pro/wiki/features-introduction/',
-          },
-        ],
-      },
-      {
-        title: t('footer.columns.docs.title'),
-        links: [
-          {
-            text: t('footer.columns.docs.links.quickStart'),
-            href: 'https://docs.newapi.pro/getting-started/',
-          },
-          {
-            text: t('footer.columns.docs.links.installation'),
-            href: 'https://docs.newapi.pro/installation/',
-          },
-          {
-            text: t('footer.columns.docs.links.apiDocs'),
-            href: 'https://docs.newapi.pro/api/',
-          },
-        ],
-      },
-      {
-        title: t('footer.columns.related.title'),
-        links: [
-          {
-            text: t('footer.columns.related.links.oneApi'),
-            href: 'https://github.com/songquanpeng/one-api',
-          },
-          {
-            text: t('footer.columns.related.links.midjourney'),
-            href: 'https://github.com/novicezk/midjourney-proxy',
-          },
-          {
-            text: t('footer.columns.related.links.newApiKeyTool'),
-            href: 'https://github.com/Calcium-Ion/new-api-key-tool',
-          },
-        ],
-      },
-    ],
-    [t]
-  )
-
-  const displayColumns = props.columns ?? fallbackColumns
+  const displayColumns = props.columns ?? FALLBACK_COLUMNS
 
   if (footerHtml) {
     return (
@@ -237,8 +165,10 @@ export function Footer(props: FooterProps) {
               dangerouslySetInnerHTML={{ __html: footerHtml }}
             />
             <div className='border-border/60 text-muted-foreground/45 flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 border-t pt-4 text-xs sm:w-auto sm:justify-end sm:border-t-0 sm:border-l sm:pt-0 sm:pl-5'>
-              <LegalLinks />
-              <ProjectAttribution currentYear={currentYear} inline />
+              <span>
+                &copy; {currentYear} {displayName}.
+              </span>
+              <LegalLinks leadingSeparator />
             </div>
           </div>
         </div>
@@ -253,45 +183,45 @@ export function Footer(props: FooterProps) {
       <div className='mx-auto max-w-6xl px-6 py-12 md:py-16'>
         <div className='flex flex-col justify-between gap-10 md:flex-row md:gap-16'>
           {/* Brand column */}
-          <div className='shrink-0'>
+          <div className='max-w-xs shrink-0'>
             <Link to='/' className='group flex items-center gap-2.5'>
               <img
                 src={displayLogo}
                 alt={displayName}
-                className='size-7 rounded-lg object-contain'
+                className='size-8 rounded-xl object-contain ring-1 ring-white/10'
               />
-              <span className='text-sm font-semibold tracking-tight'>
+              <span className='text-base font-semibold tracking-tight'>
                 {displayName}
               </span>
             </Link>
-            <p className='text-muted-foreground/60 mt-3 max-w-[200px] text-xs leading-relaxed'>
-              {t('Powerful API Management Platform')}
+            <p className='text-muted-foreground/70 mt-4 text-sm leading-relaxed'>
+              {t('One endpoint for every frontier model.')}
+            </p>
+            <p className='text-muted-foreground/40 mt-2 text-xs'>
+              superai.day
             </p>
           </div>
 
           {/* Links columns */}
-          {isDemoSiteMode && (
-            <div className='grid grid-cols-3 gap-8 md:gap-16'>
-              {displayColumns.map((column, index) => (
-                <div key={index}>
-                  <p className='text-muted-foreground/50 mb-3 text-xs font-medium tracking-wider uppercase'>
-                    {t(column.title)}
-                  </p>
-                  <ul className='space-y-2.5'>
-                    {column.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <FooterLinkItem link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className='grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-14'>
+            {displayColumns.map((column) => (
+              <div key={column.title}>
+                <p className='text-muted-foreground/50 mb-3 text-xs font-medium tracking-wider uppercase'>
+                  {t(column.title)}
+                </p>
+                <ul className='space-y-2.5'>
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <FooterLinkItem link={link} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Copyright + optional legal links inline on the left, project
-            attribution on the right; wraps on narrow screens. */}
+        {/* Copyright + legal links; wraps on narrow screens. */}
         <div className='border-border/30 mt-12 flex flex-col items-center justify-between gap-x-3 gap-y-2 border-t pt-6 sm:flex-row'>
           <div className='text-muted-foreground/40 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs sm:justify-start'>
             <span>
@@ -300,7 +230,9 @@ export function Footer(props: FooterProps) {
             </span>
             <LegalLinks leadingSeparator />
           </div>
-          <ProjectAttribution currentYear={currentYear} />
+          <span className='text-muted-foreground/35 text-xs'>
+            {t('Claude & OpenAI compatible API')}
+          </span>
         </div>
       </div>
     </footer>
