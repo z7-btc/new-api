@@ -204,7 +204,9 @@ const MESSAGES = `curl https://superai.day/v1/messages \\
     "messages": [{"role": "user", "content": "你好"}]
   }'`
 
-const CLAUDE_CODE = (isZh: boolean) => `export ANTHROPIC_BASE_URL=https://superai.day
+const CLAUDE_CODE = (
+  isZh: boolean
+) => `export ANTHROPIC_BASE_URL=https://superai.day
 export ANTHROPIC_AUTH_TOKEN=${isZh ? '<在控制台生成的密钥>' : '<a key from the console>'}
 
 claude --model claude-sonnet-4-5-20250929`
@@ -339,7 +341,7 @@ export function Docs() {
             <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
               {copy.claudeLead}
             </p>
-            <CodeBlock title='Claude Code' code={CLAUDE_CODE(isZh)} />
+            <CodeBlock title='Claude Code' code={CLAUDE_CODE(Boolean(isZh))} />
             <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
               {copy.claudeModelNote}
             </p>

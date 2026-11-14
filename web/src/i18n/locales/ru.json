@@ -7807,7 +7807,6 @@
     "Get help": "Get help",
     "If this keeps happening, please check the docs or contact support.": "If this keeps happening, please check the docs or contact support.",
     "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.": "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.",
-    "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.": "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.",
     "One key away from": "One key away from",
     "every model you need": "every model you need",
     "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.": "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.",

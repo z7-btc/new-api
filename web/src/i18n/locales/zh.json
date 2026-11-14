@@ -7807,7 +7807,6 @@
     "Get help": "获取帮助",
     "If this keeps happening, please check the docs or contact support.": "如果反复出现，请查看文档或联系客服。",
     "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.": "SuperAI 把你已开通的模型供应商接到一起：一个同时支持 Claude 与 OpenAI 两种协议的接口，一张账单。",
-    "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.": "SuperAI 说 OpenAI 的接口语言。把 base_url 指向我们，原有 SDK 代码照常工作。",
     "One key away from": "离所有模型",
     "every model you need": "只差一把密钥",
     "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.": "注册账号，复制密钥，把 base_url 指向 SuperAI。用多少付多少。",

@@ -593,7 +593,7 @@ export function OverviewDashboard() {
 
   const requestExample = useMemo<RequestExample>(() => {
     const endpoint = normalizeEndpoint(apiInfoItems[0]?.url)
-    const model = modelsQuery.data?.[0] ?? 'claude-sonnet-4-5'
+    const model = modelsQuery.data?.[0] ?? 'claude-sonnet-4-5-20250929'
     const keyName = preferredKey?.name ?? t('No API key yet')
     const ready = Boolean(preferredKey?.id && model)
 
