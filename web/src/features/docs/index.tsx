@@ -79,7 +79,7 @@ const ZH: Copy = {
   claudeLead:
     '把下面两个环境变量指向 SuperAI，Claude Code 就会用你的 SuperAI 密钥发请求，不需要再登录 Anthropic 账号。',
   claudeModelNote:
-    '模型名填「模型广场」里的 claude-* 名称，例如 claude-sonnet-4-5 或 claude-haiku-4-5。',
+    '模型名填「模型广场」里的 claude-* 名称，例如 claude-sonnet-4-5-20250929 或 claude-opus-4-7。',
   sdkTitle: 'SDK 配置',
   sdkLead:
     'Anthropic 官方 SDK、OpenAI 官方 SDK、Claude Code、LangChain、LlamaIndex、Cherry Studio 等客户端都可以直接指向 SuperAI。',
@@ -145,7 +145,7 @@ const EN: Copy = {
   claudeLead:
     'Point these two environment variables at SuperAI and Claude Code will send requests with your SuperAI key, with no Anthropic account needed.',
   claudeModelNote:
-    'Use a claude-* name from the Model Square, such as claude-sonnet-4-5 or claude-haiku-4-5.',
+    'Use a claude-* name from the Model Square, such as claude-sonnet-4-5-20250929 or claude-opus-4-7.',
   sdkTitle: 'SDK configuration',
   sdkLead:
     'The official Anthropic and OpenAI SDKs, Claude Code, LangChain, LlamaIndex and desktop clients such as Cherry Studio can all target SuperAI.',
@@ -189,7 +189,7 @@ const CURL = `curl https://superai.day/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer $SUPERAI_API_KEY" \\
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-sonnet-4-5-20250929",
     "messages": [{"role": "user", "content": "你好"}],
     "stream": false
   }'`
@@ -199,15 +199,15 @@ const MESSAGES = `curl https://superai.day/v1/messages \\
   -H "x-api-key: $SUPERAI_API_KEY" \\
   -H "anthropic-version: 2023-06-01" \\
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-sonnet-4-5-20250929",
     "max_tokens": 256,
     "messages": [{"role": "user", "content": "你好"}]
   }'`
 
-const CLAUDE_CODE = `export ANTHROPIC_BASE_URL=https://superai.day
-export ANTHROPIC_AUTH_TOKEN=<在控制台生成的密钥>
+const CLAUDE_CODE = (isZh: boolean) => `export ANTHROPIC_BASE_URL=https://superai.day
+export ANTHROPIC_AUTH_TOKEN=${isZh ? '<在控制台生成的密钥>' : '<a key from the console>'}
 
-claude --model claude-sonnet-4-5`
+claude --model claude-sonnet-4-5-20250929`
 
 const PYTHON = `from openai import OpenAI
 
@@ -217,7 +217,7 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-4-5-20250929",
     messages=[{"role": "user", "content": "你好"}],
 )
 print(resp.choices[0].message.content)`
@@ -230,7 +230,7 @@ const client = new OpenAI({
 })
 
 const resp = await client.chat.completions.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-sonnet-4-5-20250929',
   messages: [{ role: 'user', content: '你好' }],
 })
 console.log(resp.choices[0].message.content)`
@@ -243,7 +243,7 @@ client = Anthropic(
 )
 
 resp = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-4-5-20250929",
     max_tokens=256,
     messages=[{"role": "user", "content": "你好"}],
 )
@@ -339,7 +339,7 @@ export function Docs() {
             <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
               {copy.claudeLead}
             </p>
-            <CodeBlock title='Claude Code' code={CLAUDE_CODE} />
+            <CodeBlock title='Claude Code' code={CLAUDE_CODE(isZh)} />
             <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
               {copy.claudeModelNote}
             </p>
