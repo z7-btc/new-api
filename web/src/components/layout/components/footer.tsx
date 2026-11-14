@@ -231,7 +231,7 @@ export function Footer(props: FooterProps) {
             <LegalLinks leadingSeparator />
           </div>
           <span className='text-muted-foreground/35 text-xs'>
-            {t('OpenAI compatible API')}
+            {t('Claude & OpenAI compatible API')}
           </span>
         </div>
       </div>

@@ -50,7 +50,7 @@ function EmptyAboutState() {
         <div className='space-y-3 text-sm'>
           <p className='text-muted-foreground'>
             {t(
-              'SuperAI routes requests to the model providers you enable, with one OpenAI compatible endpoint and one bill.'
+              'SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.'
             )}
           </p>
           <div className='flex flex-wrap items-center justify-center gap-3 pt-2'>

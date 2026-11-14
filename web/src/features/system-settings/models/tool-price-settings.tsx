@@ -37,7 +37,6 @@ const DEFAULT_PRICES: Record<string, number> = {
   web_search_preview: 10.0,
   'web_search_preview:gpt-4o*': 25.0,
   'web_search_preview:gpt-4.1*': 25.0,
-  'web_search_preview:gpt-4o-mini*': 25.0,
   'web_search_preview:gpt-4.1-mini*': 25.0,
   file_search: 2.5,
   google_search: 14.0,

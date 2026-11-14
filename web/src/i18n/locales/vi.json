@@ -7775,7 +7775,7 @@
     "One endpoint,": "One endpoint,",
     "One gateway between your app and every model": "One gateway between your app and every model",
     "Open the model square": "Open the model square",
-    "OpenAI compatible · Pay as you go": "OpenAI compatible · Pay as you go",
+    "Claude & OpenAI compatible · Pay as you go": "Claude & OpenAI compatible · Pay as you go",
     "Per key quotas, group limits and audit trails are on from the first member you invite, not bolted on later.": "Per key quotas, group limits and audit trails are on from the first member you invite, not bolted on later.",
     "Point your SDK at SuperAI": "Point your SDK at SuperAI",
     "Prices below are per million tokens and update with the model square. No seats, no minimum spend.": "Prices below are per million tokens and update with the model square. No seats, no minimum spend.",
@@ -7806,11 +7806,11 @@
     "Model gateway": "Model gateway",
     "Get help": "Get help",
     "If this keeps happening, please check the docs or contact support.": "If this keeps happening, please check the docs or contact support.",
-    "SuperAI routes requests to the model providers you enable, with one OpenAI compatible endpoint and one bill.": "SuperAI routes requests to the model providers you enable, with one OpenAI compatible endpoint and one bill.",
+    "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.": "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.",
     "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.": "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.",
     "One key away from": "One key away from",
     "every model you need": "every model you need",
     "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.": "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.",
-    "OpenAI compatible API": "OpenAI compatible API"
+    "Claude & OpenAI compatible API": "Claude & OpenAI compatible API"
   }
 }

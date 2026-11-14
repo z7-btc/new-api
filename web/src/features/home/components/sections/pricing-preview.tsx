@@ -28,11 +28,11 @@ import { formatPrice, formatRequestPrice } from '@/features/pricing/lib/price'
 import type { PricingModel } from '@/features/pricing/types'
 
 const FEATURED = [
-  /gpt-4o-mini/i,
-  /gpt-4o/i,
-  /claude/i,
-  /gemini/i,
+  /claude-opus/i,
+  /claude-sonnet/i,
+  /claude-haiku/i,
   /deepseek/i,
+  /gemini/i,
   /qwen/i,
 ]
 

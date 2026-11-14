@@ -7775,7 +7775,7 @@
     "One endpoint,": "一個介面，",
     "One gateway between your app and every model": "你的應用和所有模型之間，只隔一層閘道",
     "Open the model square": "開啟模型廣場",
-    "OpenAI compatible · Pay as you go": "OpenAI 相容 · 按量付費",
+    "Claude & OpenAI compatible · Pay as you go": "Claude 與 OpenAI 雙協定 · 按量付費",
     "Per key quotas, group limits and audit trails are on from the first member you invite, not bolted on later.": "金鑰額度、分組限額、操作稽核，從你邀請第一個成員起就生效，不是事後補的。",
     "Point your SDK at SuperAI": "把 SDK 指向 SuperAI",
     "Prices below are per million tokens and update with the model square. No seats, no minimum spend.": "以下價格按每百萬 token 計，與模型廣場同步更新。不收席位費，沒有最低消費。",
@@ -7806,11 +7806,11 @@
     "Model gateway": "模型閘道",
     "Get help": "取得協助",
     "If this keeps happening, please check the docs or contact support.": "如果反覆出現，請查看文件或聯絡客服。",
-    "SuperAI routes requests to the model providers you enable, with one OpenAI compatible endpoint and one bill.": "SuperAI 把你已開通的模型供應商接到一起：一個 OpenAI 相容介面，一張帳單。",
+    "SuperAI routes requests to the model providers you enable, with one endpoint that speaks both the Claude and OpenAI protocols, and one bill.": "SuperAI 把你已開通的模型供應商接到一起：一個同時支援 Claude 與 OpenAI 兩種協定的介面，一張帳單。",
     "SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.": "SuperAI 說 OpenAI 的介面語言。把 base_url 指向我們，原有 SDK 程式碼照常工作。",
     "One key away from": "離所有模型",
     "every model you need": "只差一把金鑰",
     "Create an account, copy your key, and point base_url at SuperAI. Pay only for what you use.": "註冊帳號，複製金鑰，把 base_url 指向 SuperAI。用多少付多少。",
-    "OpenAI compatible API": "OpenAI 相容介面"
+    "Claude & OpenAI compatible API": "Claude 與 OpenAI 雙協定介面"
   }
 }

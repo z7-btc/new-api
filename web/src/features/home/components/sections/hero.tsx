@@ -89,7 +89,7 @@ export function Hero(props: HeroProps) {
               <span className='bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75' />
               <span className='bg-primary relative inline-flex size-1.5 rounded-full' />
             </span>
-            <span>{t('OpenAI compatible · Pay as you go')}</span>
+            <span>{t('Claude & OpenAI compatible · Pay as you go')}</span>
           </div>
 
           <h1 className='max-w-[680px] text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl lg:text-6xl'>

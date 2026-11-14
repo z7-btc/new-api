@@ -38,6 +38,9 @@ type Copy = {
   steps: { title: string; body: string }[]
   apiTitle: string
   apiLead: string
+  claudeTitle: string
+  claudeLead: string
+  claudeModelNote: string
   sdkTitle: string
   sdkLead: string
   faqTitle: string
@@ -53,7 +56,7 @@ type Copy = {
 const ZH: Copy = {
   eyebrow: '接入文档',
   title: '十分钟接入 SuperAI',
-  lead: 'SuperAI 提供 OpenAI 兼容接口。把 base_url 换成我们的地址，原有的 SDK 和代码基本不用改。',
+  lead: 'SuperAI 同时提供 Claude（Anthropic）原生接口和 OpenAI 兼容接口。把 base_url 换成我们的地址，原有的 SDK 和代码基本不用改。',
   quickTitle: '快速开始',
   steps: [
     {
@@ -71,10 +74,15 @@ const ZH: Copy = {
   ],
   apiTitle: '接口示例',
   apiLead:
-    '所有接口遵循 OpenAI 规范，聊天补全走 /v1/chat/completions，流式响应传 stream: true。',
+    '同一个密钥可以走两套协议：Anthropic 原生的 /v1/messages，或者 OpenAI 规范的 /v1/chat/completions。两边都支持流式响应。',
+  claudeTitle: '接入 Claude Code',
+  claudeLead:
+    '把下面两个环境变量指向 SuperAI，Claude Code 就会用你的 SuperAI 密钥发请求，不需要再登录 Anthropic 账号。',
+  claudeModelNote:
+    '模型名填「模型广场」里的 claude-* 名称，例如 claude-sonnet-4-5 或 claude-haiku-4-5。',
   sdkTitle: 'SDK 配置',
   sdkLead:
-    'OpenAI 官方 SDK、LangChain、LlamaIndex、Cherry Studio 等客户端都可以直接指向 SuperAI。',
+    'Anthropic 官方 SDK、OpenAI 官方 SDK、Claude Code、LangChain、LlamaIndex、Cherry Studio 等客户端都可以直接指向 SuperAI。',
   faqTitle: '常见问题',
   faqs: [
     {
@@ -114,7 +122,7 @@ const ZH: Copy = {
 const EN: Copy = {
   eyebrow: 'Documentation',
   title: 'Ship on SuperAI in ten minutes',
-  lead: 'SuperAI speaks the OpenAI API. Point base_url at our endpoint and your existing SDK code keeps working.',
+  lead: 'SuperAI speaks both protocols: Anthropic (Claude) native and OpenAI compatible. Point base_url at our endpoint and your existing SDK code keeps working.',
   quickTitle: 'Quick start',
   steps: [
     {
@@ -132,10 +140,15 @@ const EN: Copy = {
   ],
   apiTitle: 'API examples',
   apiLead:
-    'Every endpoint follows the OpenAI spec. Chat completions live at /v1/chat/completions, and streaming uses stream: true.',
+    'One key, two protocols: the native Anthropic /v1/messages endpoint, or the OpenAI compatible /v1/chat/completions. Both support streaming.',
+  claudeTitle: 'Connect Claude Code',
+  claudeLead:
+    'Point these two environment variables at SuperAI and Claude Code will send requests with your SuperAI key, with no Anthropic account needed.',
+  claudeModelNote:
+    'Use a claude-* name from the Model Square, such as claude-sonnet-4-5 or claude-haiku-4-5.',
   sdkTitle: 'SDK configuration',
   sdkLead:
-    'The official OpenAI SDKs, LangChain, LlamaIndex and desktop clients such as Cherry Studio can all target SuperAI.',
+    'The official Anthropic and OpenAI SDKs, Claude Code, LangChain, LlamaIndex and desktop clients such as Cherry Studio can all target SuperAI.',
   faqTitle: 'Frequently asked',
   faqs: [
     {
@@ -176,10 +189,25 @@ const CURL = `curl https://superai.day/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer $SUPERAI_API_KEY" \\
   -d '{
-    "model": "gpt-4o-mini",
+    "model": "claude-sonnet-4-5",
     "messages": [{"role": "user", "content": "你好"}],
     "stream": false
   }'`
+
+const MESSAGES = `curl https://superai.day/v1/messages \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: $SUPERAI_API_KEY" \\
+  -H "anthropic-version: 2023-06-01" \\
+  -d '{
+    "model": "claude-sonnet-4-5",
+    "max_tokens": 256,
+    "messages": [{"role": "user", "content": "你好"}]
+  }'`
+
+const CLAUDE_CODE = `export ANTHROPIC_BASE_URL=https://superai.day
+export ANTHROPIC_AUTH_TOKEN=<在控制台生成的密钥>
+
+claude --model claude-sonnet-4-5`
 
 const PYTHON = `from openai import OpenAI
 
@@ -189,7 +217,7 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="gpt-4o-mini",
+    model="claude-sonnet-4-5",
     messages=[{"role": "user", "content": "你好"}],
 )
 print(resp.choices[0].message.content)`
@@ -202,10 +230,24 @@ const client = new OpenAI({
 })
 
 const resp = await client.chat.completions.create({
-  model: 'gpt-4o-mini',
+  model: 'claude-sonnet-4-5',
   messages: [{ role: 'user', content: '你好' }],
 })
 console.log(resp.choices[0].message.content)`
+
+const ANTHROPIC_PYTHON = `from anthropic import Anthropic
+
+client = Anthropic(
+    api_key="sk-...",
+    base_url="https://superai.day",
+)
+
+resp = client.messages.create(
+    model="claude-sonnet-4-5",
+    max_tokens=256,
+    messages=[{"role": "user", "content": "你好"}],
+)
+print(resp.content[0].text)`
 
 function CodeBlock(props: { title: string; code: string }) {
   return (
@@ -259,7 +301,7 @@ export function Docs() {
           <div className='mt-10 grid gap-6 sm:grid-cols-3'>
             {[
               { icon: KeyRound, label: isZh ? '密钥' : 'Keys' },
-              { icon: Terminal, label: 'OpenAI SDK' },
+              { icon: Terminal, label: 'Claude & OpenAI SDK' },
               { icon: Wallet, label: isZh ? '按量计费' : 'Pay as you go' },
             ].map((item) => (
               <div
@@ -289,7 +331,18 @@ export function Docs() {
                 </li>
               ))}
             </ol>
-            <CodeBlock title='curl' code={CURL} />
+            <CodeBlock title='curl · /v1/chat/completions' code={CURL} />
+          </section>
+
+          <section className='mt-20 space-y-6'>
+            <SectionTitle id='claude-code'>{copy.claudeTitle}</SectionTitle>
+            <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
+              {copy.claudeLead}
+            </p>
+            <CodeBlock title='Claude Code' code={CLAUDE_CODE} />
+            <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
+              {copy.claudeModelNote}
+            </p>
           </section>
 
           <section className='mt-20 space-y-6'>
@@ -297,10 +350,15 @@ export function Docs() {
             <p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
               {copy.apiLead}
             </p>
+            <CodeBlock
+              title='curl · /v1/messages (Anthropic)'
+              code={MESSAGES}
+            />
             <div className='grid gap-4 lg:grid-cols-2'>
-              <CodeBlock title='Python' code={PYTHON} />
-              <CodeBlock title='Node.js' code={NODE} />
+              <CodeBlock title='Python · OpenAI SDK' code={PYTHON} />
+              <CodeBlock title='Node.js · OpenAI SDK' code={NODE} />
             </div>
+            <CodeBlock title='Python · Anthropic SDK' code={ANTHROPIC_PYTHON} />
             <div className='border-border/60 bg-card/50 overflow-hidden rounded-2xl border'>
               <table className='w-full text-left text-sm'>
                 <thead className='text-muted-foreground border-border/60 border-b text-xs uppercase'>
@@ -314,11 +372,23 @@ export function Docs() {
                 </thead>
                 <tbody className='text-muted-foreground'>
                   {[
-                    ['POST', '/v1/chat/completions', isZh ? '对话补全' : 'Chat'],
+                    [
+                      'POST',
+                      '/v1/messages',
+                      isZh ? '对话补全（Anthropic）' : 'Chat (Anthropic)',
+                    ],
+                    [
+                      'POST',
+                      '/v1/chat/completions',
+                      isZh ? '对话补全（OpenAI）' : 'Chat (OpenAI)',
+                    ],
                     ['POST', '/v1/embeddings', isZh ? '向量化' : 'Embeddings'],
                     ['GET', '/v1/models', isZh ? '模型列表' : 'Model list'],
                   ].map(([method, path, purpose]) => (
-                    <tr key={path} className='border-border/40 border-b last:border-0'>
+                    <tr
+                      key={path}
+                      className='border-border/40 border-b last:border-0'
+                    >
                       <td className='text-primary px-4 py-3 font-mono text-xs'>
                         {method}
                       </td>
@@ -373,7 +443,7 @@ export function Docs() {
             </Link>
           </section>
 
-          <section className='relative mt-20 overflow-hidden rounded-2xl border border-border/60 px-6 py-10 text-center sm:px-10'>
+          <section className='border-border/60 relative mt-20 overflow-hidden rounded-2xl border px-6 py-10 text-center sm:px-10'>
             <div aria-hidden className='brand-glow -z-10 opacity-60' />
             <h2 className='text-2xl font-semibold tracking-tight md:text-3xl'>
               {copy.ctaTitle}
